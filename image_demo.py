@@ -17,7 +17,7 @@ parser.add_argument('--output_dir', type=str, default='./output')
 args = parser.parse_args()
 
 
-def word():
+def word(currentWord):
     string = ""
     with tf.Session() as sess:
         model_cfg, model_outputs = posenet.load_model(args.model, sess)
@@ -91,8 +91,9 @@ def word():
                             
                             cv2.imwrite(os.path.join(args.output_dir, os.path.relpath(f, args.image_dir)), crop_img)
         print(string)
-        #print(string.__eq__())
+        return (string.__eq__(currentWord.upper()))
+            
 
 
-if __name__ == "__main__":
-    word()
+#if __name__ == "__main__":
+    #word()
